@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <br>
+        <button @click="changeMessage">Clcik</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+               message: '헬로우',
+               updated: '월드'
+            },
+            methods: {
+                changeMessage() {
+                    this.message = '하이';
+                }
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('')
+                }
+            },
+            watch: {
+                message(newVal, oldVal) {
+                    console.log(newVal,oldVal);
+                    this.updated = 'world'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

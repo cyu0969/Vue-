@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <component_button></component_button>
+    </div>
+    <hr>
+    <div id="app-1">
+       {{ name }}
+       <br>
+       <button @click = "change">vue2 변경</button>
+    </div>
+    <script>
+        const Component_button = {
+            template :`
+            <div>
+                {{ name }}<br>
+                <button @click="change">component 변경</button>
+            </div>
+            `,
+            data() {
+                return {
+                    name : 'component'
+                }
+            },
+            methods: {
+                change() {
+                    this.name = 'component vue'
+                }
+            },
+        };
+
+
+        const app = new Vue({
+            el: '#app',
+            components : {
+                'component_button' : Component_button
+            }
+        })
+
+        const app1 = new Vue({
+            el: '#app-1',
+            data: {
+                name : 'second'
+            },
+            methods: {
+                change() {
+                    this.name = 'second vue'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
